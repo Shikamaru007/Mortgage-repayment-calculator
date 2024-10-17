@@ -4,11 +4,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <script src="https://kit.fontawesome.com/92fa8ead7f.js" crossorigin="anonymous"></script>
   <script defer src="index.js"></script>
   <title>Mortgage repayment calculator</title>
 </head>
 <body>
+
+  <main class="container">
+      <section class="first">
+
+        <header>
+          <h1> Mortgage Calculator</h1>
+          <button class="clearBtn" id="clearBtn">Clear All</button>
+        </header>
+
+        <div class="mortgageAmount">
+          <label for="mortgageAmount" class="title">Mortgage Amount</label>
+          <div class="mortgageAmountWrapper">
+                <input type="text" id="mortgageAmount"><span class="insideElement">£</span>
+          </div>
+          <p class="errorMsg">This field is required</p>
+        </div>
+
+        <div class="conditions">
+
+          <div class="mortgageTerm">
+            <label for="mortgageTerm" class="title">Mortgage Term</label>
+            <div class="mortgageTermWrapper">
+              <input type="number" id="mortgageTerm"><span class="insideElement">years</span>
+            </div>
+            <p class="errorMsg">This field is required</p>
+          </div>
+          
+          <div class="mortgageRate">
+            <label for="mortgageRate" class="title">Interest Rate</label>
+            <div class="mortgageRateWrapper">
+              <input type="number" id="mortgageRate"><span class="insideElement">%</span>
+            </div>
+            <p class="errorMsg">This field is required</p>
+          </div>
+
+        </div>
+
+        <div class="mortgageType">
+            <label class="title">Mortgage Type</label>
+            <div class="repayment" id="selectCase">
+                <input type="radio" name="mortgageType" id="repayment" value="repayment"><label for="repayment">Repayment</label>
+            </div>
+            <div class="interestOnly" id="selectCase">
+                <input type="radio" name="mortgageType" id="interestOnly" value="interestOnly"><label for="interestOnly">Interest Only</label>
+            </div>
+            <p class="errorMsg">This field is required</p>
+        </div>
+
+        <button class="calculateBtn" id="calculateBtn"><img src="images/icon-calculator.svg" alt="calculator icon">Calculate Repayment</button>
+
+      </section>
+
+
+
+      <article class="second" id="second">
+        <div class="empty">
+            <img src="images/illustration-empty.svg" alt="result image">
+            <h2>Results shown here</h2>
+            <p>Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
+        </div>
+        <div class="results">
+            <h3>Your results</h3>
+            <p>Your results are shown below based on the information you provided. To adjust the results, edit the form and click “calculate repayments” again.</p>
+            <div class="resultDisplay">
+                <p>Your monthly repayments</p>
+                <span class="monthlyRepayment" id="monthlyRepayment"></span>
+                <hr>
+                <p>Total you'll repay over the term</p>
+                <span class="totalRepayments" id="totalRepayments"></span>
+            </div>
+        </div>
+      </article>
+  </main>  
   
 </body>
 </html>

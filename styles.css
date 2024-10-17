@@ -1,3 +1,395 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
-/* font-family: "Plus Jakarta Sans", sans-serif; */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.first {
+    padding: 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 23.4375rem;
+    width: 100%;
+    margin: auto;
+    height: 100%;
+    flex: 1;
+    justify-content: center;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+
+h1{
+    font-size: 1.5rem;
+    color: hsl(202, 55%, 16%);
+    font-weight: 700;
+}
+.clearBtn {
+    background: none;
+    border: none;
+    font-family: inherit;
+    text-decoration: underline dotted;
+    color: hsl(200, 22%, 55%);
+    cursor: pointer;
+    width: fit-content;
+}
+.clearBtn:hover {
+    color: hsl(200, 24%, 5%);
+}
+.title {
+    font-weight: 500;
+    color: hsl(200, 22%, 55%);
+    font-size: .9rem;
+}
+.conditions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.mortgageAmount,
+.mortgageTerm,
+.mortgageRate {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+input[type=number],
+input[type=text]{
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: .5rem 1.1rem;
+    font-family: inherit;
+    color: hsl(202, 55%, 16%);
+    background-color: transparent;
+    border: 1px solid  hsl(200, 22%, 55%);
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;  
+}
+input[type=number]:hover,
+input[type=text]:hover {
+    border: 1px inset hsl(203, 41%, 72%);
+}
+input[type=number]:focus,
+input[type=text]:focus {
+    outline: 1px solid hsl(61, 70%, 52%);
+    border: none;
+}
+input[type=number]:focus + .insideElement,
+input[type=text]:focus + .insideElement {
+    background-color: hsl(61, 70%, 52%);
+    color: hsl(202, 55%, 16%);
+}
+#mortgageAmount {
+    padding-left: 3.1rem;
+}
+#mortgageTerm {
+    padding-right: 5rem;
+}
+#mortgageRate {
+    padding-right: 3.1rem;
+}
+.mortgageAmountWrapper,
+.mortgageTermWrapper,
+.mortgageRateWrapper {
+    position: relative;
+}
+.mortgageAmountWrapper .insideElement {
+    position: absolute;
+    padding-inline: .9rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background-color: hsl(202, 86%, 94%);
+    font-weight: 700;
+    color: hsl(200, 24%, 40%);
+    z-index: calc(-1);
+    border-radius: 5px 0 0 5px;
+
+}
+.mortgageTermWrapper .insideElement,
+.mortgageRateWrapper .insideElement {
+    position: absolute;
+    padding-inline: .9rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    top: 0;
+    right: 0;
+    background-color: hsl(202, 86%, 94%);
+    font-weight: 700;
+    color: hsl(200, 24%, 40%);
+    z-index: calc(-1);
+    border-radius: 0 5px 5px 0;
+}
+.mortgageAmountWrapper.error + .errorMsg,
+.mortgageTermWrapper.error + .errorMsg,
+.mortgageRateWrapper.error + .errorMsg{
+    display: block;
+}
+.mortgageAmountWrapper.error .insideElement,
+.mortgageTermWrapper.error .insideElement,
+.mortgageRateWrapper.error .insideElement {
+    background-color:hsl(4, 97%, 48%);
+    color: white;
+}
+.mortgageAmountWrapper.error input,
+.mortgageTermWrapper.error input,
+.mortgageRateWrapper.error input{
+    border: 1px solid hsl(4, 97%, 48%);
+}
+
+.mortgageType {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+.mortgageType.error .errorMsg {
+    display: block;
+}
+
+.mortgageType div {
+    display: flex;
+    gap: 1rem;
+    font-size: 1rem;
+    align-items: center;
+    padding: .6rem 1rem;
+    border: 1px solid hsl(200, 24%, 40%);
+    border-radius: 5px;
+    font-weight: 700;
+    color:  hsl(203, 30%, 25%);
+    cursor: pointer;
+}
+.mortgageType div.selected {
+    background-color: hsl(61, 70%, 93%);
+    border: 1px solid hsl(61, 70%, 52%);
+}
+.mortgageType div:hover {
+    border: 1px solid hsl(61, 70%, 52%);
+}
+input[type=radio]{
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid hsl(203, 30%, 25%);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input[type=radio]::before {
+    content: '';
+    width: 70%;
+    height: 70%;
+    background-color: hsl(61, 70%, 52%);
+    position: absolute;
+   
+    border-radius: 50%;
+    display: none;
+}
+input[type=radio]:checked {
+    border: 2px solid hsl(61, 70%, 52%);
+}
+input[type=radio]:checked::before {
+    display: block;
+}
+.calculateBtn {
+    width: 100%;
+    font-family: inherit;
+    font-size: clamp(.9rem, 3.9vw, 1.2rem);
+    font-weight: 700;
+    color: hsl(202, 55%, 16%);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: .8em;
+    background-color: hsl(61, 70%, 52%);
+    border: none;
+    padding: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.calculateBtn:hover {
+    background-color: hsl(61, 70%, 72%);
+}
+
+.second {
+    background-color: hsl(203, 30%, 25%);
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 2rem;
+    flex: 1;
+}
+.empty {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .8rem;
+    max-width: 30rem;
+    width: 80%;
+    width: 100%;
+    margin: auto;
+}
+.empty img {
+    width: 10rem;
+}
+.empty p,
+.results p {
+    color: hsl(203, 41%, 72%);
+    font-size: .85rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+.results {
+    display: none;
+    flex-direction: column;
+    gap: .8rem;
+    max-width: 30rem;
+    width: 80%;
+    width: 100%;
+    margin: auto;
+}
+h3 {
+    font-size: 1.3rem;
+}
+.resultDisplay {
+    background-color: hsl(202, 55%, 16%);
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    border-top: 4px solid hsl(61, 70%, 52%);
+    border-radius: 10px;
+    padding: 1rem;
+}
+.monthlyRepayment {
+    font-size: 2rem;
+    font-weight: 700;
+    color: hsl(61, 70%, 58%);
+    letter-spacing: .5px;
+}
+hr {
+    outline: 1px solid hsla(199, 17%, 35%, 0.455);
+    border: none;
+    margin: .8rem 0;
+}
+.totalRepayments {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.errorMsg {
+    display: none;
+    font-size: .75rem;
+    color: hsl(4, 97%, 58%);
+}
+.second.showResult .empty{
+    display: none;
+}
+.second.showResult .results{
+    display: flex;
+}
+
+
+
+@media screen and (min-width:550px){
+    .first{
+        max-width: 32.375rem;
+    }
+}
+
+@media screen and (min-width:768px){
+    .first{
+        max-width: 32.375rem;
+        gap: 2rem;
+    }
+    .mortgageType {
+        gap: 1rem;
+    }
+    .container{
+        min-height: 100vh;
+    }
+    .second{
+        flex: 1;
+    }
+}
+
+@media screen and (min-width:1020px){
+    .container {
+        flex-direction: row;
+        border-radius: 20px;
+        max-width: 55rem;
+        background-color: white;
+        overflow: hidden;
+        min-height: auto;
+        
+    }
+ 
+    body {
+        background-color: hsl(202, 86%, 94%);
+    }
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .first{
+        max-width: 32.375rem;
+        padding: 2.5rem;
+        gap: 1.2rem;
+    }
+    .conditions{
+        flex-direction: row;
+    }
+    .mortgageTerm,
+    .mortgageRate{
+        flex: 1;
+    }
+    .second {
+        flex: 1;
+        border-radius: 0 0 0 18%;
+    }
+    .results{
+        margin: 0;
+        gap: 1.5rem;
+    }
+    .results p {
+        line-height: 1.6;
+    }
+    .mortgageAmountWrapper,
+    .mortgageTermWrapper ,
+    .mortgageRateWrapper {
+        z-index: calc(1);    
+    }
+    .calculateBtn{
+        width: fit-content;
+        padding-inline: 2rem;
+    }
+    .monthlyRepayment {
+        font-size: 2.5rem;
+    }
+}
